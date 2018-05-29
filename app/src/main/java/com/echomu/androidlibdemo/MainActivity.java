@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.echomu.androidlibdemo.douban.DoubanActivity;
+
 public class MainActivity extends AppBaseActivity {
 
     private ListView lvDemo;
@@ -40,9 +42,10 @@ public class MainActivity extends AppBaseActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-
+                        startActivity(new Intent(MainActivity.this,WebViewActivity.class));
                         break;
                     case 1:
+                        startActivity(new Intent(MainActivity.this, DoubanActivity.class));
                         break;
                 }
             }
@@ -80,4 +83,13 @@ public class MainActivity extends AppBaseActivity {
         super.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    protected int getLayoutId() {
+        return 0;
+    }
+
+    @Override
+    protected void initViewAndData(Bundle savedInstanceState) {
+
+    }
 }

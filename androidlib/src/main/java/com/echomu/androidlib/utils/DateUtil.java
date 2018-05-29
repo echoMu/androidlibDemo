@@ -198,7 +198,7 @@ public class DateUtil {
      * @return
      */
     public static String format(String time) {
-        if (!StringUtil.isNoBlankAndNoNull(time)) {
+        if (StringUtils.isEmpty(time)) {
             return null;
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
@@ -247,7 +247,7 @@ public class DateUtil {
      * @return
      */
     public static String format2(String time) {
-        if (!StringUtil.isNoBlankAndNoNull(time)) {
+        if (StringUtils.isEmpty(time)) {
             return null;
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
@@ -281,7 +281,7 @@ public class DateUtil {
      * @return
      */
     public static String format3(String time) {
-        if (!StringUtil.isNoBlankAndNoNull(time)) {
+        if (StringUtils.isEmpty(time)) {
             return null;
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
@@ -324,7 +324,7 @@ public class DateUtil {
      * @return
      */
     public static String format4(String time) {
-        if (!StringUtil.isNoBlankAndNoNull(time)) {
+        if (StringUtils.isEmpty(time)) {
             return null;
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
@@ -365,7 +365,7 @@ public class DateUtil {
      * @return
      */
     public static String formatForEventContent(String time) {
-        if (!StringUtil.isNoBlankAndNoNull(time)) {
+        if (StringUtils.isEmpty(time)) {
             return null;
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
@@ -403,7 +403,7 @@ public class DateUtil {
      * @return
      */
     public static String formatLater(String time) {
-        if (!StringUtil.isNoBlankAndNoNull(time)) {
+        if (StringUtils.isEmpty(time)) {
             return null;
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
@@ -450,16 +450,12 @@ public class DateUtil {
             Date d1=dateFormat.parse(DATE1);
             Date d2=dateFormat.parse(DATE2);
             if (d1.getTime() > d2.getTime()) {
-                CommonLog.d(CommonUtil.class,"DATE1在DATE12前");
-
                 return true;
             }else {
-                CommonLog.d(CommonUtil.class,"DATE1没有在DATE12前");
+
             }
         } catch (ParseException e) {
             e.printStackTrace();
-
-            CommonLog.d(CommonUtil.class,"比较两个时间出错："+e.getMessage());
         }
 
         return false;

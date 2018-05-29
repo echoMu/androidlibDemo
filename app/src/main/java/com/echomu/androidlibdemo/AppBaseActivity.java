@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.echomu.androidlib.activity.BaseActivity;
+import com.echomu.androidlib.mvp.base.BaseActivity;
 
 /**
  * 主项目中的AppBaseActivity 基类封装的是业务相关的公用逻辑
