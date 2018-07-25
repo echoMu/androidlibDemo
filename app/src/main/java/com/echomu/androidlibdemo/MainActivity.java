@@ -4,16 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.echomu.androidlib.utils.FragmentFactory;
+import com.echomu.androidlib.utils.FragmentUtil;
+import com.echomu.androidlib.widget.HomeTabLayout;
 import com.echomu.androidlibdemo.douban.DoubanActivity;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppBaseActivity {
 
-    private ListView lvDemo;
+    private HomeTabLayout mBottomBar;
 
     @Override
     protected int bindLayout() {
@@ -22,34 +28,13 @@ public class MainActivity extends AppBaseActivity {
 
     @Override
     protected void initView(View view) {
-        lvDemo = (ListView) findViewById(R.id.lvDemo);
+        mBottomBar= (HomeTabLayout) findViewById(R.id.tb_bottom_bar);
     }
 
     @Override
     protected void doBusiness(Context mContext, Bundle savedInstanceState) {
-        // ArrayAdapter的参数1是一个context，代表要生成ListView的上下文
-        // 参数2要传入的是一个布局文件id值，这里使用google预置的布局文件
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1);
-        lvDemo.setAdapter(adapter);
-
-        // 添加数据
-        for (int i = 0; i < 20; i++) {
-            adapter.add("item " + getItemText(i));
-        }
-
-        lvDemo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i) {
-                    case 0:
-                        startActivity(new Intent(MainActivity.this,WebViewActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(MainActivity.this, DoubanActivity.class));
-                        break;
-                }
-            }
-        });
+        initTab();
+        initFragment(savedInstanceState);
     }
 
     private String getItemText(int i) {
@@ -62,6 +47,39 @@ public class MainActivity extends AppBaseActivity {
                 break;
         }
         return itemText;
+    }
+
+    /**
+     * 初始化底部tab
+     */
+    private void initTab() {
+        mBottomBar.setBottomLabel(Arrays.asList(getResources().getStringArray(R.array.bottom_bar)));
+
+        int[] drawables = new int[]{R.drawable.ic_home, R.drawable.ic_mail, R.drawable.ic_task_manager, R.drawable.ic_person};
+        mBottomBar.setBottomLabelImg(drawables);
+        mBottomBar.setOnTabClickListener(new HomeTabLayout.OnTabClickListener() {
+            @Override
+            public void onClick(int position) {
+                FragmentUtil.showFragment(getSupportFragmentManager(), position);
+            }
+        });
+    }
+
+    /**
+     * @param savedInstanceState
+     */
+    private void initFragment(Bundle savedInstanceState) {
+        //工厂创建Fragment
+        Fragment homeFragment = FragmentFactory.createFragment(HomeFragment.class,null);
+        Fragment messageFragment = FragmentFactory.createFragment(HomeFragment.class,null);
+
+        Fragment performanceFragment = FragmentFactory.createFragment(HomeFragment.class,null);
+        Fragment userFragment = FragmentFactory.createFragment(HomeFragment.class,null);
+
+        FragmentUtil.addFragmentToContainer(savedInstanceState,
+                getSupportFragmentManager(),
+                R.id.fl_fragment_container,
+                homeFragment, messageFragment, performanceFragment, userFragment);
     }
 
     @Override

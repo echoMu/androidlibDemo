@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HomeTabLayout">
+        <attr name="checkedPosition" format="integer" />
+        <attr name="checkedColor" format="color" />
+        <attr name="unCheckedColor" format="color" />
+    </declare-styleable>
+</resources>
