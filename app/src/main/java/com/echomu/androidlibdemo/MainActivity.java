@@ -22,11 +22,6 @@ public class MainActivity extends AppBaseActivity {
     private HomeTabLayout mBottomBar;
 
     @Override
-    protected int bindLayout() {
-        return R.layout.activity_main;
-    }
-
-    @Override
     protected void initView(View view) {
         mBottomBar= (HomeTabLayout) findViewById(R.id.tb_bottom_bar);
     }
@@ -83,27 +78,8 @@ public class MainActivity extends AppBaseActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-    }
-
-    /**
-     * 由于三星机型拍照返回时，会旋转屏幕，导致不可用，所以必须重写此方法
-     * 并且在AndroidManifest.xml中设置对应activity的属性
-     * android:configChanges="keyboardHidden|orientation|screenSize"
-     * android:screenOrientation="portrait"
-     *
-     * @param newConfig
-     */
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
-    @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.activity_main;
     }
 
     @Override

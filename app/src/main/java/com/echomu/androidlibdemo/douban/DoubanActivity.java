@@ -14,6 +14,7 @@ public class DoubanActivity extends BaseMvpActivity<DoubanPresenter> implements 
         return new DoubanPresenter(mContext,this);
     }
 
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_douban;

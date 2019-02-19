@@ -23,24 +23,12 @@ public abstract class AppBaseActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // 设置渲染视图View
-        mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
-        setContentView(mContextView);
-
         // 初始化控件
         initView(mContextView);
 
         // 业务操作
         doBusiness(this, savedInstanceState);
     }
-
-    /**
-     * 绑定渲染视图的布局文件
-     *
-     * @return 布局文件资源id
-     */
-    protected abstract int bindLayout();
 
     /**
      * 初始化控件
@@ -54,6 +42,14 @@ public abstract class AppBaseActivity extends BaseActivity {
      */
     protected abstract void doBusiness(Context mContext, Bundle savedInstanceState);
 
+    /**
+     * 由于三星机型拍照返回时，会旋转屏幕，导致不可用，所以必须重写此方法
+     * 并且在AndroidManifest.xml中设置对应activity的属性
+     * android:configChanges="keyboardHidden|orientation|screenSize"
+     * android:screenOrientation="portrait"
+     *
+     * @param newConfig
+     */
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);

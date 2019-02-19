@@ -9,10 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.echomu.androidlibdemo.activity.ImmersionActivity;
 import com.echomu.androidlibdemo.douban.DoubanActivity;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -44,13 +45,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_home, container, false);
-        view.findViewById(R.id.tv_home).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), DoubanActivity.class));
-            }
-        });
-
+        view.findViewById(R.id.bt_home).setOnClickListener(this);
+        view.findViewById(R.id.bt_1).setOnClickListener(this);
         return view;
     }
 
@@ -76,6 +72,22 @@ public class HomeFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
 //        mListener = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.bt_home:
+                start(DoubanActivity.class);
+                break;
+            case R.id.bt_1:
+                start(ImmersionActivity.class);
+                break;
+        }
+    }
+
+    private void start(Class<?> cla) {
+        startActivity(new Intent(getActivity(), cla));
     }
 
 //    public interface OnFragmentInteractionListener {
