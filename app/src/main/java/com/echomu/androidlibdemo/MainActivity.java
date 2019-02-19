@@ -32,18 +32,6 @@ public class MainActivity extends AppBaseActivity {
         initFragment(savedInstanceState);
     }
 
-    private String getItemText(int i) {
-        String itemText = "";
-        switch (i) {
-            case 0:
-                itemText = "选图&拍照";
-                break;
-            case 1:
-                break;
-        }
-        return itemText;
-    }
-
     /**
      * 初始化底部tab
      */
