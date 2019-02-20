@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- 点击底部上来 -->
+    <style name="AnimationBottom">
+        <item name="android:windowEnterAnimation">@anim/iphone_ui_in</item>
+        <item name="android:windowExitAnimation">@anim/iphone_ui_out</item>
+    </style>
+
 </resources>
